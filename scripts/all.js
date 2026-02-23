@@ -22,8 +22,49 @@ document.getElementById('btn-all').addEventListener('click', function() {
     btnRejected.classList.add('bg-white', 'hover:bg-blue-500', 'hover:text-white');
     btnRejected.classList.remove('bg-blue-500', 'text-white');
 
+
+    const allCardsList = document.querySelectorAll('.card');
+    allCardsList.forEach(card => card.classList.remove('hidden'));
+    
+
 });
 
+//job filtering by INTERVIEW
+const interviewAddBtns = document.querySelectorAll('.interview-adding-btn');
+const interviewCountDisplay = document.getElementById('interview-count');
+
+interviewAddBtns.forEach(button => {
+    button.addEventListener('click', function() {
+
+        let currentCount = parseInt(interviewCountDisplay.innerText);
+        interviewCountDisplay.innerText = currentCount + 1;
+
+        const card = button.closest('.card');
+        card.classList.add('is-interview');
+
+        button.disabled = true;
+        button.classList.add('opacity-50', 'cursor-not-allowed');
+    });
+});
+
+
+//job filtering by REJECTED
+const rejectedAddBtns = document.querySelectorAll('.rejected-adding-btn');
+const rejectedCountDisplay = document.getElementById('rejected-count');
+
+rejectedAddBtns.forEach(button => {
+    button.addEventListener('click', function() {
+
+        let currentCount = parseInt(rejectedCountDisplay.innerText);
+        rejectedCountDisplay.innerText = currentCount + 1;
+
+        const card = button.closest('.card');
+        card.classList.add('is-rejected');
+
+        button.disabled = true;
+        button.classList.add('opacity-50', 'cursor-not-allowed');
+    });
+}); 
 
 
 // console.log('all.js loaded');

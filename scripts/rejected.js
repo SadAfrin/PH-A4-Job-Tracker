@@ -1,11 +1,30 @@
 document.getElementById('rejected-filter-btn').addEventListener('click', function() {
     const allCards = document.getElementById('all-cards');
     const noJobs = document.getElementById('job-container');
+    const individualCards = document.querySelectorAll('.card');
+    let hasData = false;
 
-    // cards hiding
-    allCards.classList.add('hidden');
-    // no jobs message showing
-    noJobs.classList.remove('hidden');
+    individualCards.forEach(card => {
+        if (card.classList.contains('is-rejected')) {
+            card.classList.remove('hidden'); 
+            hasData = true;
+        } else {
+            card.classList.add('hidden'); 
+        }
+    });
+
+    if (hasData) {
+        allCards.classList.remove('hidden');
+        noJobs.classList.add('hidden');
+    } else {
+        allCards.classList.add('hidden');
+        noJobs.classList.remove('hidden');
+    }
+
+    // // cards hiding
+    // allCards.classList.add('hidden');
+    // // no jobs message showing
+    // noJobs.classList.remove('hidden');
 
     const btnAll = document.getElementById('btn-all');
     const btnInterview = document.getElementById('interview-filter-btn');
