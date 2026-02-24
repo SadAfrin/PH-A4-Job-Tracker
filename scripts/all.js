@@ -4,15 +4,35 @@ function updateJobStatsText() {
     const btnInterview = document.getElementById('interview-filter-btn');
     const btnRejected = document.getElementById('rejected-filter-btn');
     const jobStats = document.getElementById('job-stats');
+    const allCards = document.querySelectorAll('.card');
+    
+    const totalDisplay = document.getElementById('total-jobs-count');
+    if (totalDisplay) {
+        totalDisplay.innerText = totalJobs;
+    }
 
     if (btnAll.classList.contains('bg-blue-500')) {
         jobStats.innerText = `${totalJobs} jobs`;
     } else if (btnInterview.classList.contains('bg-blue-500')) {
         const interviewCount = document.getElementById('interview-count').innerText;
         jobStats.innerText = `${interviewCount} of ${totalJobs} jobs`;
+        if (interviewCount === '0') {
+            document.getElementById('all-cards').classList.add('hidden');
+            document.getElementById('job-container').classList.remove('hidden');
+        }
     } else if (btnRejected.classList.contains('bg-blue-500')) {
         const rejectedCount = document.getElementById('rejected-count').innerText;
         jobStats.innerText = `${rejectedCount} of ${totalJobs} jobs`;
+        if (rejectedCount === '0') {
+            document.getElementById('all-cards').classList.add('hidden');
+            document.getElementById('job-container').classList.remove('hidden');
+        }
+    }
+
+    //no job available msg showing
+    if (totalJobs === 0) {
+        document.getElementById('all-cards').classList.add('hidden');
+        document.getElementById('job-container').classList.remove('hidden');
     }
 }
 
@@ -103,27 +123,6 @@ interviewAddBtns.forEach(button => {
             document.getElementById('job-container').classList.remove('hidden');
         }
 
-        // // //job state update kora
-        // const totalCount = document.querySelectorAll('.card').length;
-        // if (btnInterviewFilter.classList.contains('bg-blue-500')) {
-        //     const count = document.getElementById('interview-count').innerText;
-        //     document.getElementById('job-stats').innerText = `${count} of ${totalCount} jobs`;
-        // } 
-        // else if (btnRejectedFilter.classList.contains('bg-blue-500')) {
-        //     const count = document.getElementById('rejected-count').innerText;
-        //     document.getElementById('job-stats').innerText = `${count} of ${totalCount} jobs`;
-        // }
-
-        // //job state update kora
-        // if (btnInterviewFilter.classList.contains('bg-blue-500')) {
-        //     const count = document.getElementById('interview-count').innerText;
-        //     document.getElementById('job-stats').innerText = `${count} of ${totalCount} jobs`;
-        // } 
-        // else if (btnRejectedFilter.classList.contains('bg-blue-500')) {
-        //     const count = document.getElementById('rejected-count').innerText;
-        //     document.getElementById('job-stats').innerText = `${count} of ${totalCount} jobs`;
-        // }
-
         updateJobStatsText();
 
     });
@@ -177,16 +176,6 @@ rejectedAddBtns.forEach(button => {
             document.getElementById('job-container').classList.remove('hidden');
         }
 
-        // //job state update kora
-        // if (btnRejectedFilter.classList.contains('bg-blue-500')) {
-        //     const count = document.getElementById('interview-count').innerText;
-        //     document.getElementById('job-stats').innerText = `${count} of ${totalCount} jobs`;
-        // }
-        // else if (btnRejectedFilter.classList.contains('bg-blue-500')) {
-        //     const count = document.getElementById('rejected-count').innerText;
-        //     document.getElementById('job-stats').innerText = `${count} of ${totalCount} jobs`;
-        // }
-
         updateJobStatsText();
         
     });
@@ -202,5 +191,25 @@ updateJobStatsText();
 
 
 //challenge part- del icon er jonne kaj
+document.querySelectorAll('.delete-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const card = btn.closest('.card');
+        if (card.classList.contains('is-interview')) {
+            interviewCountDisplay.innerText = parseInt(interviewCountDisplay.innerText) - 1;
+        } else if (card.classList.contains('is-rejected')) {
+            rejectedCountDisplay.innerText = parseInt(rejectedCountDisplay.innerText) - 1;
+        }
+        card.remove();
+
+        // const totalDisplay = document.getElementById('total-jobs-count'); 
+        // const currentCards = document.querySelectorAll('.card').length;
+        // if (totalDisplay) {
+        //     totalDisplay.innerText = currentCards;
+        // } 
+
+        updateJobStatsText();
+    });
+});
+
 
 // console.log('all.js loaded');
