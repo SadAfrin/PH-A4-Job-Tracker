@@ -21,11 +21,6 @@ document.getElementById('rejected-filter-btn').addEventListener('click', functio
         noJobs.classList.remove('hidden');
     }
 
-    // // cards hiding
-    // allCards.classList.add('hidden');
-    // // no jobs message showing
-    // noJobs.classList.remove('hidden');
-
     const btnAll = document.getElementById('btn-all');
     const btnInterview = document.getElementById('interview-filter-btn');
     const btnRejected = document.getElementById('rejected-filter-btn');
@@ -41,12 +36,4 @@ document.getElementById('rejected-filter-btn').addEventListener('click', functio
 
     // job state update kora ekdom daan paher
     updateJobStatsText();
-    // const currentRejectedCount = document.getElementById('rejected-count').innerText; 
-    // const totalCount = document.querySelectorAll('.card').length; 
-    // document.getElementById('job-stats').innerText = `${currentRejectedCount} of ${totalCount} jobs`;
 });
-
-
-
-
-// console.log('rejected.js loaded');

@@ -62,7 +62,6 @@ document.getElementById('btn-all').addEventListener('click', function() {
     btnRejected.classList.add('bg-white', 'hover:bg-blue-500', 'hover:text-white');
     btnRejected.classList.remove('bg-blue-500', 'text-white');
 
-
     const allCardsList = document.querySelectorAll('.card');
     allCardsList.forEach(card => card.classList.remove('hidden'));
 
@@ -96,8 +95,6 @@ interviewAddBtns.forEach(button => {
             rejBtn.innerText = "REJECTED";
             rejBtn.classList.remove('opacity-50', 'cursor-not-allowed');
         }
-
-
 
         // interview status set kora
         if (!card.classList.contains('is-interview')) {
@@ -181,12 +178,7 @@ rejectedAddBtns.forEach(button => {
     });
 }); 
 
-
-
 updateJobStatsText();
-
-
-
 
 
 
@@ -201,15 +193,6 @@ document.querySelectorAll('.delete-btn').forEach(btn => {
         }
         card.remove();
 
-        // const totalDisplay = document.getElementById('total-jobs-count'); 
-        // const currentCards = document.querySelectorAll('.card').length;
-        // if (totalDisplay) {
-        //     totalDisplay.innerText = currentCards;
-        // } 
-
         updateJobStatsText();
     });
 });
-
-
-// console.log('all.js loaded');

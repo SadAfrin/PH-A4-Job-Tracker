@@ -1,2 +1,2 @@
-Github Repo Link: 
-Live Site link: 
+Github Repo Link: https://github.com/SadAfrin/PH-A4-Job-Tracker
+Live Site link: https://sadafrin.github.io/PH-A4-Job-Tracker/

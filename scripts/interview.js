@@ -22,11 +22,6 @@ document.getElementById('interview-filter-btn').addEventListener('click', functi
         noJobs.classList.remove('hidden');
     }
 
-    // // cards hiding
-    // allCards.classList.add('hidden');
-    // // No jobs message showing
-    // noJobs.classList.remove('hidden');
-
     const btnAll = document.getElementById('btn-all');
     const btnInterview = document.getElementById('interview-filter-btn');
     const btnRejected = document.getElementById('rejected-filter-btn');
@@ -41,15 +36,7 @@ document.getElementById('interview-filter-btn').addEventListener('click', functi
     btnRejected.classList.remove('bg-blue-500', 'text-white');
 
     //job state update kora
-    
-    // const currentInterviewCount = document.getElementById('interview-count').innerText; 
-    // const totalCount = document.querySelectorAll('.card').length; 
-    // document.getElementById('job-stats').innerText = `${currentInterviewCount} of ${totalCount} jobs`;
-
     updateJobStatsText();
 
     
 });
-
-
-
