@@ -1,3 +1,23 @@
+function updateJobStatsText() {
+    const totalJobs = document.querySelectorAll('.card').length;
+    const btnAll = document.getElementById('btn-all');
+    const btnInterview = document.getElementById('interview-filter-btn');
+    const btnRejected = document.getElementById('rejected-filter-btn');
+    const jobStats = document.getElementById('job-stats');
+
+    if (btnAll.classList.contains('bg-blue-500')) {
+        jobStats.innerText = `${totalJobs} jobs`;
+    } else if (btnInterview.classList.contains('bg-blue-500')) {
+        const interviewCount = document.getElementById('interview-count').innerText;
+        jobStats.innerText = `${interviewCount} of ${totalJobs} jobs`;
+    } else if (btnRejected.classList.contains('bg-blue-500')) {
+        const rejectedCount = document.getElementById('rejected-count').innerText;
+        jobStats.innerText = `${rejectedCount} of ${totalJobs} jobs`;
+    }
+}
+
+
+
 document.getElementById('btn-all').addEventListener('click', function() {
     const allCards = document.getElementById('all-cards');
     const noJobs = document.getElementById('job-container');
@@ -25,16 +45,20 @@ document.getElementById('btn-all').addEventListener('click', function() {
 
     const allCardsList = document.querySelectorAll('.card');
     allCardsList.forEach(card => card.classList.remove('hidden'));
+
+
+    updateJobStatsText();
     
 });
 
 
-//job filtering by INTERVIEW clicking
-const interviewAddBtns = document.querySelectorAll('.interview-adding-btn');
 const interviewCountDisplay = document.getElementById('interview-count');
 const rejectedCountDisplay = document.getElementById('rejected-count');
 const jobStatsDisplay = document.getElementById('job-stats');
 const totalJobsCount = document.querySelectorAll('.card').length;
+
+//job filtering by INTERVIEW clicking
+const interviewAddBtns = document.querySelectorAll('.interview-adding-btn');
 
 interviewAddBtns.forEach(button => {
     button.addEventListener('click', function() {
@@ -62,7 +86,7 @@ interviewAddBtns.forEach(button => {
             
             if(status) {
                 status.innerText = "INTERVIEW";
-                status.classList.remove('bg-gray-200');
+                status.classList.remove('bg-gray-200', 'bg-red-100', 'text-red-700');
                 status.classList.add('bg-green-100', 'text-green-700');
             }
 
@@ -79,28 +103,43 @@ interviewAddBtns.forEach(button => {
             document.getElementById('job-container').classList.remove('hidden');
         }
 
-        // //job state update kora
-        // const currentInterviewCount = parseInt(interviewCountDisplay.innerText);
-        // const btnInterviewFilter = document.getElementById('interview-filter-btn');
-        
+        // // //job state update kora
+        // const totalCount = document.querySelectorAll('.card').length;
         // if (btnInterviewFilter.classList.contains('bg-blue-500')) {
-        //     jobStatsDisplay.innerText = `${currentInterviewCount} of ${totalJobsCount} jobs`;
+        //     const count = document.getElementById('interview-count').innerText;
+        //     document.getElementById('job-stats').innerText = `${count} of ${totalCount} jobs`;
+        // } 
+        // else if (btnRejectedFilter.classList.contains('bg-blue-500')) {
+        //     const count = document.getElementById('rejected-count').innerText;
+        //     document.getElementById('job-stats').innerText = `${count} of ${totalCount} jobs`;
         // }
+
+        // //job state update kora
+        // if (btnInterviewFilter.classList.contains('bg-blue-500')) {
+        //     const count = document.getElementById('interview-count').innerText;
+        //     document.getElementById('job-stats').innerText = `${count} of ${totalCount} jobs`;
+        // } 
+        // else if (btnRejectedFilter.classList.contains('bg-blue-500')) {
+        //     const count = document.getElementById('rejected-count').innerText;
+        //     document.getElementById('job-stats').innerText = `${count} of ${totalCount} jobs`;
+        // }
+
+        updateJobStatsText();
 
     });
 });
 
 
+
 //job filtering by REJECTED
 const rejectedAddBtns = document.querySelectorAll('.rejected-adding-btn');
-
-
 
 rejectedAddBtns.forEach(button => {
     button.addEventListener('click', function() {
         const card = button.closest('.card');
         const status = card.querySelector('.status');
-        const btnInterviewFilter = document.getElementById('interview-filter-btn');
+        const btnInterviewFilter = document.getElementById('interview-filter-btn');//
+        const btnRejectedFilter = document.getElementById('rejected-filter-btn');//
 
         if (card.classList.contains('is-interview')) {
             card.classList.remove('is-interview');
@@ -119,7 +158,7 @@ rejectedAddBtns.forEach(button => {
 
             if(status) {
                 status.innerText = "REJECTED";
-                status.classList.remove('bg-gray-200');
+                status.classList.remove('bg-gray-200', 'bg-green-100', 'text-green-700');
                 status.classList.add('bg-red-100', 'text-red-700');
             }
 
@@ -138,18 +177,30 @@ rejectedAddBtns.forEach(button => {
             document.getElementById('job-container').classList.remove('hidden');
         }
 
-        // //job state update kora ekdom daan paher
-        // const currentRejectedCount = parseInt(rejectedCountDisplay.innerText);
-        // const btnRejectedFilter = document.getElementById('rejected-filter-btn');
-
+        // //job state update kora
         // if (btnRejectedFilter.classList.contains('bg-blue-500')) {
-        //     jobStatsDisplay.innerText = `${currentRejectedCount} of ${totalJobsCount} jobs`;
+        //     const count = document.getElementById('interview-count').innerText;
+        //     document.getElementById('job-stats').innerText = `${count} of ${totalCount} jobs`;
         // }
+        // else if (btnRejectedFilter.classList.contains('bg-blue-500')) {
+        //     const count = document.getElementById('rejected-count').innerText;
+        //     document.getElementById('job-stats').innerText = `${count} of ${totalCount} jobs`;
+        // }
+
+        updateJobStatsText();
+        
     });
 }); 
 
 
 
+updateJobStatsText();
 
+
+
+
+
+
+//challenge part- del icon er jonne kaj
 
 // console.log('all.js loaded');
