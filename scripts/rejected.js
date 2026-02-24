@@ -38,6 +38,11 @@ document.getElementById('rejected-filter-btn').addEventListener('click', functio
 
     btnInterview.classList.add('bg-white', 'hover:bg-blue-500', 'hover:text-white');
     btnInterview.classList.remove('bg-blue-500', 'text-white');
+
+    // job state update kora ekdom daan paher
+    const currentRejectedCount = document.getElementById('rejected-count').innerText; 
+    const totalCount = document.querySelectorAll('.card').length; 
+    document.getElementById('job-stats').innerText = `${currentRejectedCount} of ${totalCount} jobs`;
 });
 
 

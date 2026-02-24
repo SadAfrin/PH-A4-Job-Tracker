@@ -39,6 +39,11 @@ document.getElementById('interview-filter-btn').addEventListener('click', functi
 
     btnRejected.classList.add('bg-white', 'hover:bg-blue-500', 'hover:text-white');
     btnRejected.classList.remove('bg-blue-500', 'text-white');
+
+    //job state update kora
+    const currentInterviewCount = document.getElementById('interview-count').innerText; 
+    const totalCount = document.querySelectorAll('.card').length; 
+    document.getElementById('job-stats').innerText = `${currentInterviewCount} of ${totalCount} jobs`;
 });
 
 
